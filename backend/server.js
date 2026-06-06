@@ -152,16 +152,16 @@ SOCKET SERVER
 const server =
   http.createServer(app);
 
-const io =
-  new Server(server, {
-    cors: {
-      origin: [
-        "http://localhost:5173",
-        "https://mandal-website-xi.vercel.app/"
-      ],
-      credentials: true,
-    },
-  });
+const io = new Server(server, {
+  cors: {
+    origin: [
+      "http://localhost:5173",
+      "https://mandal-website-xi.vercel.app"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+});
 
 socketHandler(io);
 
