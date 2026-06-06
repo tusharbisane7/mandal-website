@@ -103,7 +103,7 @@ function Navbar() {
   const profileImage = user?.profilePic
   ? user.profilePic.startsWith("/")
     ? `https://mandal-website-production.up.railway.app${user.profilePic}`
-    : `https://mandal-website-production.up.railway.app/${user.profilePic}`
+    : `https://mandal-website-production.up.railway.app${user.profilePic}`
   : "/user.png";
 
 console.log("PROFILE PIC:", user?.profilePic);

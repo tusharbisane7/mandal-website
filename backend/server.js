@@ -46,10 +46,13 @@ const app = express();
 MIDDLEWARE
 */
 app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
+cors({
+origin: [
+"http://localhost:5173",
+"https://mandal-website-xi.vercel.app"
+],
+credentials: true,
+})
 );
 
 app.use(express.json());
@@ -146,44 +149,38 @@ const createAdmin =
 /*
 SOCKET SERVER
 */
-const server =
-  http.createServer(app);
+const server = http.createServer(app);
 
-const io =
-  new Server(server, {
-    cors: {
-      origin:
-        "http://localhost:5173",
-      credentials: true,
-    },
-  });
+const io = new Server(server, {
+cors: {
+origin: [
+"http://localhost:5173",
+"https://mandal-website-xi.vercel.app"
+],
+methods: ["GET", "POST"],
+credentials: true,
+},
+});
 
 socketHandler(io);
 
 /*
 START SERVER
 */
+const PORT = process.env.PORT || 5000;
+
 sequelize
-  .sync()
-  .then(async () => {
-    console.log(
-      "✅ Database Connected"
-    );
+.sync()
+.then(async () => {
+console.log("✅ Database Connected");
 
-    await createAdmin();
+await createAdmin();
 
-    server.listen(
-      5000,
-      () => {
-        console.log(
-          "🚀 Server Running On Port 5000"
-        );
-      }
-    );
-  })
-  .catch((error) => {
-    console.log(
-      "Database Error:",
-      error
-    );
-  });
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 Server Running On Port ${PORT}`);
+});
+
+})
+.catch((error) => {
+console.log("❌ Database Error:", error);
+});
