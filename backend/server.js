@@ -43,30 +43,33 @@ dotenv.config();
 const app = express();
 
 /*
-CORS
+MIDDLEWARE
 */
-const allowedOrigins = [
-"http://localhost:5173",
-"https://mandal-website-xi.vercel.app"
-];
-
 app.use(
-cors({
-origin: allowedOrigins,
-credentials: true,
-})
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
 );
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 /*
 STATIC FILES
 */
-app.use("/uploads", express.static("uploads"));
+app.use(
+  "/uploads",
+  express.static("uploads")
+);
 
 /*
-ROUTES
+API ROUTES
 */
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -79,93 +82,108 @@ app.use("/api/notice", noticeRoutes);
 app.use("/api/chat", chatRoutes);
 
 /*
-HEALTH CHECK
+HOME ROUTE
 */
 app.get("/", (req, res) => {
-res.status(200).json({
-success: true,
-message: "Ganesh Mandal Backend Running",
-});
+  res.json({
+    success: true,
+    message:
+      "Ganesh Mandal Backend Running",
+  });
 });
 
 /*
 CREATE ADMIN
 */
-const createAdmin = async () => {
-try {
-const admin = await User.findOne({
-where: {
-username: "tushar7",
-},
-});
+const createAdmin =
+  async () => {
+    try {
+      const admin =
+        await User.findOne({
+          where: {
+            username:
+              "tushar7",
+          },
+        });
 
+      if (!admin) {
+        const hashedPassword =
+          await bcrypt.hash(
+            "2004",
+            10
+          );
 
-if (!admin) {
-  const hashedPassword = await bcrypt.hash(
-    "2004",
-    10
-  );
+        await User.create({
+          fullName:
+            "Tushar Admin",
 
-  await User.create({
-    fullName: "Tushar Admin",
-    username: "tushar7",
-    email: "admin@mandal.com",
-    password: hashedPassword,
-    role: "admin",
-  });
+          username:
+            "tushar7",
 
-  console.log("✅ Admin Created");
-} else {
-  console.log("✅ Admin Already Exists");
-}
+          email:
+            "admin@mandal.com",
 
+          password:
+            hashedPassword,
 
-} catch (error) {
-console.log("Admin Error:", error);
-}
-};
+          role:
+            "admin",
+        });
+
+        console.log(
+          "✅ Admin Created"
+        );
+      } else {
+        console.log(
+          "✅ Admin Already Exists"
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 /*
-HTTP + SOCKET SERVER
+SOCKET SERVER
 */
-const server = http.createServer(app);
+const server =
+  http.createServer(app);
 
-const io = new Server(server, {
-cors: {
-origin: allowedOrigins,
-methods: ["GET", "POST"],
-credentials: true,
-},
-});
+const io =
+  new Server(server, {
+    cors: {
+      origin:
+        "http://localhost:5173",
+      credentials: true,
+    },
+  });
 
 socketHandler(io);
 
 /*
 START SERVER
 */
-const PORT = process.env.PORT || 5000;
-
 sequelize
-.authenticate()
-.then(() => {
-console.log("✅ Database Connected");
-return sequelize.sync();
-})
-.then(async () => {
-await createAdmin();
+  .sync()
+  .then(async () => {
+    console.log(
+      "✅ Database Connected"
+    );
 
+    await createAdmin();
 
-server.listen(PORT, "0.0.0.0", () => {
-  console.log(
-    `🚀 Server Running On Port ${PORT}`
-  );
-});
-
-
-})
-.catch((error) => {
-console.error(
-"❌ Startup Error:",
-error
-);
-});
+    server.listen(
+      5000,
+      () => {
+        console.log(
+          "🚀 Server Running On Port 5000"
+        );
+      }
+    );
+  })
+  .catch((error) => {
+    console.log(
+      "Database Error:",
+      error
+    );
+  });
