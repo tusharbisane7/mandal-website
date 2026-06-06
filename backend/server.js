@@ -47,7 +47,10 @@ MIDDLEWARE
 */
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:[
+     "http://localhost:5173",
+    "https://mandal-website-xi.vercel.app/"
+    ],
     credentials: true,
   })
 );
@@ -152,8 +155,10 @@ const server =
 const io =
   new Server(server, {
     cors: {
-      origin:
+      origin: [
         "http://localhost:5173",
+        "https://mandal-website-xi.vercel.app/"
+      ],
       credentials: true,
     },
   });
@@ -166,24 +171,18 @@ START SERVER
 sequelize
   .sync()
   .then(async () => {
-    console.log(
-      "✅ Database Connected"
-    );
+    console.log("✅ Database Connected");
 
     await createAdmin();
 
-    server.listen(
-      5000,
-      () => {
-        console.log(
-          "🚀 Server Running On Port 5000"
-        );
-      }
-    );
+    const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
+  console.log(`🚀 Server Running On Port ${PORT}`);
+});
   })
+
   .catch((error) => {
     console.log(
-      "Database Error:",
-      error
-    );
+      "Database Error:",error);
   });

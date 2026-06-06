@@ -62,7 +62,7 @@ return (
 
 const profileImage =
 user?.profilePic
-? `http://localhost:5000/uploads/${user.profilePic.replace(
+? `mandal-website-production.up.railway.app/uploads/${user.profilePic.replace(
           "uploads/",
           ""
         )}`
