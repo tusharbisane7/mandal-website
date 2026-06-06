@@ -1,0 +1,25 @@
+@use "./base/variables";
+@use "./base/global";
+
+@use "./layout/navbar";
+@use "./layout/footer";
+
+@use "./components/buttons";
+@use "./components/cards";
+@use "./components/forms";
+@use "./components/tables";
+
+@use "./pages/home";
+@use "./pages/login";
+@use "./pages/register";
+@use "./pages/gallery";
+@use "./pages/events";
+@use "./pages/donations";
+@use "./pages/admin";
+@use "./pages/profile";
+@use "./pages/publicDonations";
+@use "./pages/myDonations";
+@use "./pages/idCard";
+@use "./pages/manageUsers";
+@use "./pages/manageIdCards";
+@use "./pages/manageDonations";

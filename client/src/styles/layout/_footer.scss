@@ -1,0 +1,21 @@
+@use "../base/variables" as *;
+
+.footer{
+  background:#111827;
+
+  color:white;
+
+  padding:40px;
+
+  text-align:center;
+
+  margin-top:50px;
+}
+
+.footer h3{
+  color:$secondary;
+}
+
+.footer p{
+  margin:8px 0;
+}

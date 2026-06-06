@@ -1,0 +1,39 @@
+@use "../base/variables" as *;
+
+.dashboard-grid{
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(250px,1fr));
+
+  gap:20px;
+}
+
+.dashboard-card{
+  color:white;
+
+  padding:25px;
+
+  border-radius:$radius;
+
+  background:
+  linear-gradient(
+  135deg,
+  #bebdbd,
+  #aca9a4
+  );
+
+  box-shadow:$shadow;
+}
+
+.dashboard-card h2{
+  font-size:36px;
+}
+
+@media(max-width:$mobile){
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+
+}

@@ -1,0 +1,465 @@
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  height: 80px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 25px;
+
+  background: rgba(255, 107, 0, 0.95);
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 5px 20px
+    rgba(0, 0, 0, 0.12);
+
+  animation:
+    navbarFade 0.5s ease;
+}
+
+@keyframes navbarFade {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   LEFT
+========================= */
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+
+  object-fit: contain;
+
+  transition: 0.4s;
+}
+
+.logo:hover {
+  transform:
+    rotate(10deg)
+    scale(1.1);
+}
+
+.navbar-left h2 {
+  color: white;
+
+  font-size: 20px;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+/* =========================
+   RIGHT
+========================= */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.menu-btn {
+  margin-left: 5px;
+}
+
+/* =========================
+   USER PREVIEW
+========================= */
+
+.user-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  padding: 5px 10px;
+
+  border-radius: 50px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.15
+  );
+}
+
+.user-preview:hover {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.25
+    );
+
+  transform:
+    translateY(-2px);
+}
+
+.nav-user-pic {
+  width: 55px;
+  height: 55px;
+
+
+  min-width: 45px;
+  min-height: 45px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 3px solid white;
+
+  display: block;
+
+  overflow: hidden;
+}
+
+.nav-user-pic:hover {
+  transform:
+    scale(1.08);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow:
+      0 0 0 0
+      rgba(
+        255,
+        255,
+        255,
+        0.6
+      );
+  }
+
+  70% {
+    box-shadow:
+      0 0 0 15px
+      rgba(
+        255,
+        255,
+        255,
+        0
+      );
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 0
+      rgba(
+        255,
+        255,
+        255,
+        0
+      );
+  }
+}
+
+.user-preview span {
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* =========================
+   MENU BUTTON
+========================= */
+
+.menu-btn {
+  border: none;
+  background: transparent;
+
+  color: white;
+
+  font-size: 32px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.menu-btn:hover {
+  transform:
+    scale(1.15)
+    rotate(90deg);
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+.sidebar-overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  background:
+    rgba(0, 0, 0, 0.4);
+
+  backdrop-filter: blur(4px);
+
+  z-index: 998;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  width: 320px;
+  height: 100vh;
+
+  background: white;
+
+  z-index: 999;
+
+  padding: 20px;
+
+  overflow-y: auto;
+
+  box-shadow:
+    -5px 0 20px
+    rgba(0, 0, 0, 0.15);
+
+  animation:
+    slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform:
+      translateX(100%);
+  }
+
+  to {
+    transform:
+      translateX(0);
+  }
+}
+
+/* =========================
+   CLOSE BTN
+========================= */
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-btn {
+  border: none;
+
+  background: transparent;
+
+  font-size: 30px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  transform:
+    rotate(90deg);
+
+  color: #ff6b00;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.sidebar-profile {
+  text-align: center;
+
+  margin-bottom: 25px;
+}
+
+.sidebar-profile img {
+  width: 110px;
+  height: 110px;
+
+  min-width: 110px;
+  min-height: 110px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  border: 4px solid #ff6b00;
+
+  display: block;
+
+  margin: auto;
+}
+
+.sidebar-profile img:hover {
+  transform:
+    scale(1.05);
+}
+
+.sidebar-profile h3 {
+  margin-top: 12px;
+
+  color: #333;
+}
+
+.sidebar-profile p {
+  color: #777;
+}
+
+/* =========================
+   MENU LINKS
+========================= */
+
+.sidebar ul {
+  padding: 0;
+}
+
+.sidebar li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.sidebar a,
+.logout-btn {
+  display: block;
+
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  color: #333;
+
+  font-weight: 500;
+
+  transition: 0.3s;
+}
+
+.sidebar a:hover,
+.logout-btn:hover {
+  background: #fff1e8;
+
+  color: #ff6b00;
+
+  transform:
+    translateX(5px);
+}
+
+.logout-btn {
+  border: none;
+  cursor: pointer;
+
+  background: #ff6b00;
+
+  color: white;
+}
+
+.logout-btn:hover {
+  color: white;
+  background: #e65c00;
+}
+
+/* =========================
+   LANG BUTTONS
+========================= */
+
+.language-buttons {
+  margin-top: 20px;
+
+  display: flex;
+  gap: 10px;
+}
+
+.language-buttons button {
+  flex: 1;
+
+  border: none;
+
+  background: #ff6b00;
+
+  color: white;
+
+  padding: 10px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.language-buttons button:hover {
+  background: #e65c00;
+
+  transform:
+    translateY(-2px);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 15px;
+  }
+
+  .navbar-left h2 {
+    font-size: 14px;
+  }
+
+  .user-preview span {
+    display: none;
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .sidebar {
+    width: 280px;
+  }
+}

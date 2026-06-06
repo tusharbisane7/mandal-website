@@ -1,0 +1,45 @@
+{
+  "mandal_name": "Shree Ganesh Mitra Mandal",
+  "home": "Home",
+  "events": "Events",
+  "gallery": "Gallery",
+  "donations": "Donations",
+  "profile": "Profile",
+  "donate_money": "Donate Money",
+  "my_donations": "My Donations",
+  "id_card": "Mandal ID Card",
+  "admin": "Admin",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+
+  "welcome": "Shree Ganesh Mitra Mandal",
+  "bappa": "Ganpati Bappa Morya",
+  "welcome_message": "Welcome to the official website of  Mitra Mandal.",
+
+  "view_events": "View Events",
+  "public_donations": "Public Donations",
+
+  "about_title": "About Our Mandal",
+  "about_text": "Shree Ganesh Mitra Mandal is dedicated to celebrating Ganesh Utsav, organizing social welfare activities, cultural programs and serving the community.",
+
+  "office_bearers": "Office Bearers",
+
+  "president": "President",
+  "secretary": "Secretary",
+  "cashier": "Cashier",
+
+  "activities": "Our Activities",
+
+  "activity1": "Ganesh Utsav Celebration",
+  "activity2": "Blood Donation Camps",
+  "activity3": "Educational Support",
+  "activity4": "Social Welfare Programs",
+  "activity5": "Cultural Events",
+
+  "quick_links": "Quick Links",
+
+  "donate_now": "Donate Now",
+
+  "contact_us": "Contact Us"
+}

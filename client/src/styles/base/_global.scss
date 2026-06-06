@@ -1,0 +1,64 @@
+@use "./variables" as *;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Nunito",sans-serif;
+}
+
+html,
+body{
+  font-family:"Nunito",sans-serif;
+}
+
+body{
+  background:$bg;
+  color:$dark;
+  overflow-x:hidden;
+}
+
+.container{
+  width:90%;
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  text-decoration:none;
+}
+
+ul{
+  list-style:none;
+}
+
+button,
+input,
+textarea,
+select{
+  font-family:"Nunito",sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-family:"Nunito",sans-serif;
+}
+
+@media(max-width:$mobile){
+
+  .container{
+    width:95%;
+    padding:15px;
+  }
+
+}

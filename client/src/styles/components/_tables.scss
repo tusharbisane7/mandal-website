@@ -1,0 +1,30 @@
+@use "../base/variables" as *;
+
+.table-wrapper{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  background:white;
+}
+
+th{
+  background:$primary;
+  color:white;
+  padding:15px;
+}
+
+td{
+  padding:15px;
+  border-bottom:1px solid #eee;
+}
+
+@media(max-width:$mobile){
+
+  table{
+    min-width:700px;
+  }
+
+}

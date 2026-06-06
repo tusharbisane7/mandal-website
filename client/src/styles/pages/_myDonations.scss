@@ -1,0 +1,25 @@
+@use "../base/variables" as *;
+
+.my-donations{
+  padding:30px 0;
+}
+
+.receipt-card{
+  background:white;
+
+  padding:20px;
+
+  margin-bottom:20px;
+
+  border-radius:$radius;
+
+  box-shadow:$shadow;
+}
+
+.receipt-card h3{
+  color:$primary;
+}
+
+.receipt-number{
+  font-weight:bold;
+}
