@@ -74,15 +74,15 @@ app.use(
 /*
 API ROUTES
 */
-app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
-app.use("/donations", donationRoutes);
-app.use("/expenses", expenseRoutes);
-app.use("/events", eventRoutes);
-app.use("/ticker", tickerRoutes);
-app.use("/gallery", galleryRoutes);
-app.use("/notice", noticeRoutes);
-app.use("/chat", chatRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/donations", donationRoutes);
+app.use("/api/expenses", expenseRoutes);
+app.use("/api/events", eventRoutes);
+app.use("/api/ticker", tickerRoutes);
+app.use("/api/gallery", galleryRoutes);
+app.use("/api/notice", noticeRoutes);
+app.use("/api/chat", chatRoutes);
 
 /*
 HOME ROUTE
