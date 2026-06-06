@@ -29,7 +29,7 @@ e.preventDefault();
 
 try {
   const res = await API.post(
-    "/auth/login",
+    "https://mandal-website.onrender.com/auth/login",
     {
       username,
       password,
