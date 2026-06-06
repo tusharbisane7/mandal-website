@@ -179,7 +179,7 @@ function Profile() {
                 preview
                   ? preview
                   : user.profilePic
-                  ? `https://mandal-website-production.up.railway.app${user.profilePic}`
+                  ? `https://mandal-website.onrender.com${user.profilePic}`
                   : "/user.png"
               }
               alt="Profile"

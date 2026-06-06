@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://mandal-website-production.up.railway.app",
+  baseURL: "https://mandal-website.onrender.com",
 });
 
 API.interceptors.request.use((req) => {

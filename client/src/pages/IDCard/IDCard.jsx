@@ -62,7 +62,7 @@ return (
 
 const profileImage =
 user?.profilePic
-? `https://mandal-website-production.up.railway.app/uploads/${user.profilePic.replace(
+? `https://mandal-website.onrender.com/uploads/${user.profilePic.replace(
           "uploads/",
           ""
         )}`
