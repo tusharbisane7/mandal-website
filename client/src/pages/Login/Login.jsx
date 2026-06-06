@@ -28,13 +28,13 @@ const handleLogin = async (e) => {
 e.preventDefault();
 
 try {
-  const res = await API.post(
-    "https://mandal-website.onrender.com/auth/login",
-    {
-      username,
-      password,
-    }
-  );
+ const res = await API.post(
+  "/api/auth/login",
+  {
+    username,
+    password,
+  }
+);
 localStorage.setItem(
   "role",
   res.data.user.role
