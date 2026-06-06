@@ -29,7 +29,7 @@ e.preventDefault();
 
 try {
  const res = await API.post(
-  "/api/auth/login",
+  "/auth/login",
   {
     username,
     password,
