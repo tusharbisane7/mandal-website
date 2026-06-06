@@ -43,36 +43,30 @@ dotenv.config();
 const app = express();
 
 /*
-MIDDLEWARE
+CORS
 */
+const allowedOrigins = [
+"http://localhost:5173",
+"https://mandal-website-xi.vercel.app"
+];
+
 app.use(
-  cors({
-    origin:[
-     "http://localhost:5173",
-    "https://mandal-website-xi.vercel.app/"
-    ],
-    credentials: true,
-  })
+cors({
+origin: allowedOrigins,
+credentials: true,
+})
 );
 
 app.use(express.json());
-
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+app.use(express.urlencoded({ extended: true }));
 
 /*
 STATIC FILES
 */
-app.use(
-  "/uploads",
-  express.static("uploads")
-);
+app.use("/uploads", express.static("uploads"));
 
 /*
-API ROUTES
+ROUTES
 */
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
@@ -85,82 +79,63 @@ app.use("/api/notice", noticeRoutes);
 app.use("/api/chat", chatRoutes);
 
 /*
-HOME ROUTE
+HEALTH CHECK
 */
 app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message:
-      "Ganesh Mandal Backend Running",
-  });
+res.status(200).json({
+success: true,
+message: "Ganesh Mandal Backend Running",
+});
 });
 
 /*
 CREATE ADMIN
 */
-const createAdmin =
-  async () => {
-    try {
-      const admin =
-        await User.findOne({
-          where: {
-            username:
-              "tushar7",
-          },
-        });
+const createAdmin = async () => {
+try {
+const admin = await User.findOne({
+where: {
+username: "tushar7",
+},
+});
 
-      if (!admin) {
-        const hashedPassword =
-          await bcrypt.hash(
-            "2004",
-            10
-          );
 
-        await User.create({
-          fullName:
-            "Tushar Admin",
+if (!admin) {
+  const hashedPassword = await bcrypt.hash(
+    "2004",
+    10
+  );
 
-          username:
-            "tushar7",
+  await User.create({
+    fullName: "Tushar Admin",
+    username: "tushar7",
+    email: "admin@mandal.com",
+    password: hashedPassword,
+    role: "admin",
+  });
 
-          email:
-            "admin@mandal.com",
+  console.log("✅ Admin Created");
+} else {
+  console.log("✅ Admin Already Exists");
+}
 
-          password:
-            hashedPassword,
 
-          role:
-            "admin",
-        });
-
-        console.log(
-          "✅ Admin Created"
-        );
-      } else {
-        console.log(
-          "✅ Admin Already Exists"
-        );
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+} catch (error) {
+console.log("Admin Error:", error);
+}
+};
 
 /*
-SOCKET SERVER
+HTTP + SOCKET SERVER
 */
-const server =
-  http.createServer(app);
+const server = http.createServer(app);
 
 const io = new Server(server, {
-  cors: {
-    origin: [
-      "http://localhost:5173",
-      "https://mandal-website-xi.vercel.app"
-    ],
-    methods: ["GET", "POST"],
-    credentials: true
-  }
+cors: {
+origin: allowedOrigins,
+methods: ["GET", "POST"],
+credentials: true,
+},
 });
 
 socketHandler(io);
@@ -168,21 +143,29 @@ socketHandler(io);
 /*
 START SERVER
 */
+const PORT = process.env.PORT || 5000;
+
 sequelize
-  .sync()
-  .then(async () => {
-    console.log("✅ Database Connected");
+.authenticate()
+.then(() => {
+console.log("✅ Database Connected");
+return sequelize.sync();
+})
+.then(async () => {
+await createAdmin();
 
-    await createAdmin();
 
-    const PORT = process.env.PORT || 5000;
-
-server.listen(PORT, () => {
-  console.log(`🚀 Server Running On Port ${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(
+    `🚀 Server Running On Port ${PORT}`
+  );
 });
-  })
 
-  .catch((error) => {
-    console.log(
-      "Database Error:",error);
-  });
+
+})
+.catch((error) => {
+console.error(
+"❌ Startup Error:",
+error
+);
+});
