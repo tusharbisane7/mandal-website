@@ -100,10 +100,8 @@ function Navbar() {
     navigate("/login");
   };
 
-  const profileImage = user?.profilePic
-  ? user.profilePic.startsWith("/")
-    ? `https://mandal-website.onrender.com${user.profilePic}`
-    : `https://mandal-website.onrender.com${user.profilePic}`
+ const profileImage = user?.profilePic
+  ? `https://mandal-website.onrender.com/${user.profilePic.replace(/^\/+/, "")}`
   : "/user.png";
 
 console.log("PROFILE PIC:", user?.profilePic);
