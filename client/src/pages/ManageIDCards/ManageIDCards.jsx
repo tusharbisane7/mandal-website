@@ -67,8 +67,8 @@ function ManageIDCards() {
                     ? user.profilePic.startsWith(
                         "/"
                       )
-                      ? `mandal-website-production.up.railway.app${user.profilePic}`
-                      : `mandal-website-production.up.railway.app/${user.profilePic}`
+                      ? `https://mandal-website-production.up.railway.app${user.profilePic}`
+                      : `https://mandal-website-production.up.railway.app/${user.profilePic}`
                     : "/user.png";
 
                 return (
